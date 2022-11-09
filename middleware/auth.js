@@ -11,7 +11,7 @@ const auth = async (req, res, next) => {
  
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET)
-    res.status(200).json({ sucess: 'true', payload: decoded })
+    // res.status(200).json({ sucess: 'true', payload: decoded })
   } catch (error) {
     throw new UnAutharise('You are not Autharised')
   }
