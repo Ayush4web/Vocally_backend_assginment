@@ -1,0 +1,187 @@
+openapi: 3.0.0
+info:
+  title: Vocally Assginment
+  contact: {}
+  version: '1.0'
+servers:
+  - url: https://vocally-assginment.up.railway.app
+    variables: {}
+  - url: http://localhost:5000
+    variables: {}
+paths:
+  /:
+    get:
+      tags:
+        - Misc
+      summary: Home Page
+      operationId: HomePage
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /api/v1/book:
+    post:
+      tags:
+        - Misc
+      summary: Create Book
+      operationId: CreateBook
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/CreateBookRequest'
+                - example:
+                    title: AI/ML
+                    author: Ravi Sharma
+                    publication: ''
+                    year: 2020
+            example:
+              title: AI/ML
+              author: Ravi Sharma
+              publication: ''
+              year: 2020
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+        - Misc
+      summary: Get All Books
+      operationId: GetAllBooks
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /api/v1/book/{id}:
+    get:
+      tags:
+        - Misc
+      summary: Get Single Book
+      operationId: GetSingleBook
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The Book ID
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+        - Misc
+      summary: Delete Book
+      operationId: DeleteBook
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The Book ID
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+
+    put:
+      tags:
+        - Misc
+      summary: Update Book
+      operationId: UpdateBook
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The Book ID
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/UpdateBookRequest'
+                - example:
+                    title: WEB 3.0
+                    author: Ravi Singh
+                    publication: xyz publications
+                    year: 2022
+            example:
+              title: WEB 3.0
+              author: Ravi Singh
+              publication: xyz publications
+              year: 2022
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    CreateBookRequest:
+      title: CreateBookRequest
+      required:
+        - title
+        - author
+        - publication
+        - year
+      type: object
+      properties:
+        title:
+          type: string
+        author:
+          type: string
+        publication:
+          type: string
+        year:
+          type: integer
+          format: int32
+      example:
+        title: AI/ML
+        author: Ravi Sharma
+        publication: ''
+        year: 2020
+    UpdateBookRequest:
+      title: UpdateBookRequest
+      required:
+        - title
+        - author
+        - publication
+        - year
+      type: object
+      properties:
+        title:
+          type: string
+        author:
+          type: string
+        publication:
+          type: string
+        year:
+          type: integer
+          format: int32
+      example:
+        title: WEB 3.0
+        author: Ravi Singh
+        publication: xyz publications
+        year: 2022
+  securitySchemes:
+    httpBearer:
+      type: http
+      scheme: bearer
+security:
+  - httpBearer: []
+tags:
+  - name: Misc
+    description: ''

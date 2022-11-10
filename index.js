@@ -18,6 +18,11 @@ const customErrorHandler = require('./middleware/customErrorHandler')
 const notfound = require('./middleware/Notfound')
 const auth = require('./middleware/auth')
 
+// swagger 
+const swaggerUI = require('swagger-ui-express')
+const YAML = require('yamljs')
+const swaggerDoc = YAML.load('./swagger.yaml')
+
 // rate limiter
 
 const limiter = rateLimit({
@@ -52,9 +57,12 @@ app.get('/', (req, res) => {
 
   res.status(200).json({
     msg: 'Hey, welcome to the vocally backend assginment!',
+    api_docs:'/api-docs',
     token: token,
   })
 })
+
+app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(swaggerDoc))
 
 app.use('/api/v1', auth, libraryRouter)
 
