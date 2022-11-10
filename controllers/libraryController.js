@@ -38,15 +38,17 @@ const deleteBook = async (req, res) => {
 const updateBook = async (req, res) => {
   const { title, author, publication, year } = req.body
   const id = req.params.id
-  const book = await Book.findByIdAndUpdate({
-    _id: id,
-    title,
-    author,
-    publication,
-    year,
-  })
-
-  res.status(200).json(book)
+  const book = await Book.findOneAndUpdate(
+    { _id: id },
+    {
+      title,
+      author,
+      publication,
+      year,
+    }
+  )
+  console.log(book)
+  res.status(200).json({msg:"Book updated succesfully"})
 }
 
 module.exports = {
