@@ -10,5 +10,6 @@
  - All other routes other than home are authorized with JWT
 
 ### Dockerization
- - run $ docker-compose -d up vocablly
+ - run $ docker-compose up -d
+ - open http://localhost:3000
  
