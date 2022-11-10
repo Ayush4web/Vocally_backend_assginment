@@ -47,7 +47,7 @@ const updateBook = async (req, res) => {
       year,
     }
   )
-  console.log(book)
+ 
   res.status(200).json({msg:"Book updated succesfully"})
 }
 
